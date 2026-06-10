@@ -1,0 +1,33 @@
+{
+  "name": "asia-bus-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "latest",
+    "@vitejs/plugin-react": "latest",
+    "framer-motion": "latest",
+    "gsap": "latest",
+    "lightgallery": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-countup": "latest",
+    "react-dom": "latest",
+    "react-hook-form": "latest",
+    "react-router-dom": "^7.17.0",
+    "swiper": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
+  }
+}
