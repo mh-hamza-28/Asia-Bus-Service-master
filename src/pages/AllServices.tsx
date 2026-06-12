@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Search, SlidersHorizontal, MapPin, Phone } from 'lucide-react';
 import { services, company } from '../data/siteData';
+import { useDeviceType } from '../hooks/useDeviceType';
 
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name-asc';
 
 export function AllServices() {
+  const device = useDeviceType(); // available for device-specific layouts
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState<SortOption>('default');
 

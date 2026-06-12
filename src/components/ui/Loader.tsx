@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useDeviceType } from '../../hooks/useDeviceType';
 
 type LoaderProps = {
   onDone: () => void;
@@ -18,6 +19,8 @@ function AsiaLogoSVG() {
 
 export function Loader({ onDone }: LoaderProps) {
   const [phase, setPhase] = useState<'logo-in' | 'bus-transit' | 'done'>('logo-in');
+  const device = useDeviceType();
+  const isMobile = device === 'mobile';
 
   useEffect(() => {
     // Phase 1: Logo appears and stays (0 - 2.5s)
@@ -82,20 +85,22 @@ export function Loader({ onDone }: LoaderProps) {
                   ease: ['easeOut', 'easeInOut', 'easeIn'],
                 }}
               >
-                {/* Happy Journey — behind the bus (left side), fades in as bus reaches center */}
-                <motion.div
-                  className="mr-4 flex flex-col items-end gap-1 sm:mr-6"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2, duration: 0.7, ease: 'easeOut' }}
-                >
-                  <h2 className="font-display text-2xl font-extrabold whitespace-nowrap tracking-tight text-white sm:text-4xl lg:text-5xl">
-                    Happy <span className="text-brand-accent">Journey</span>
-                  </h2>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 sm:text-xs">
-                    Asia Bus Service
-                  </p>
-                </motion.div>
+                {/* Happy Journey — behind bus on web, after bus on mobile */}
+                {!isMobile && (
+                  <motion.div
+                    className="mr-4 flex flex-col items-end gap-1 sm:mr-6"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.2, duration: 0.7, ease: 'easeOut' }}
+                  >
+                    <h2 className="font-display text-2xl font-extrabold whitespace-nowrap tracking-tight text-white sm:text-4xl lg:text-5xl">
+                      Happy <span className="text-brand-accent">Journey</span>
+                    </h2>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 sm:text-xs">
+                      Asia Bus Service
+                    </p>
+                  </motion.div>
+                )}
 
                 {/* Bus */}
                 <div>
@@ -113,6 +118,28 @@ export function Loader({ onDone }: LoaderProps) {
                     <span />
                   </div>
                 </div>
+
+                {/* Happy Journey — after bus on mobile with vanishing animation */}
+                {isMobile && (
+                  <motion.div
+                    className="ml-3 flex flex-col items-start gap-0.5"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: [0, 1, 1, 0], x: 0 }}
+                    transition={{
+                      delay: 0.8,
+                      duration: 3.5,
+                      times: [0, 0.2, 0.75, 1],
+                      ease: ['easeOut', 'easeInOut', 'easeIn'],
+                    }}
+                  >
+                    <h2 className="font-display text-lg font-extrabold whitespace-nowrap tracking-tight text-white">
+                      Happy <span className="text-brand-accent">Journey</span>
+                    </h2>
+                    <p className="text-[8px] font-semibold uppercase tracking-[0.3em] text-white/40">
+                      Asia Bus Service
+                    </p>
+                  </motion.div>
+                )}
               </motion.div>
             )}
           </div>

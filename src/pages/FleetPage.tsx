@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, ArrowRight, Phone } from 'lucide-react';
 import { fleet, company } from '../data/siteData';
+import { useDeviceType } from '../hooks/useDeviceType';
 
 /* Extended fleet data for the full page */
 const allBuses = [
@@ -12,6 +13,7 @@ const allBuses = [
 ];
 
 export function FleetPage() {
+  const device = useDeviceType(); // available for device-specific layouts
   const [filter, setFilter] = useState<'all' | 'AC' | 'Non AC'>('all');
 
   const filtered = filter === 'all'

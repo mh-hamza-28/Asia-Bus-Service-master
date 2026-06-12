@@ -107,12 +107,7 @@ export const trustStats = [
 ];
 
 export const testimonials = [
-  { name: 'Rohit Sharma', role: 'Corporate Travel Manager', quote: 'Clean buses, punctual reporting and a team that picks up the phone every time. Our office trips feel effortless now.', rating: 5 },
-  { name: 'Nisha Verma', role: 'Wedding Client', quote: 'They handled guest movement beautifully. The bus arrived early, looked premium and everyone travelled comfortably.', rating: 5 },
-  { name: 'Amit Singh', role: 'School Tour Coordinator', quote: 'Professional drivers and well-maintained buses. Parents felt confident and the students had a smooth journey.', rating: 5 },
-  { name: 'Farhan Khan', role: 'Tour Organizer', quote: 'The coach was spacious, clean and reliable for a long outstation route. Booking was simple and quick.', rating: 4 },
-  { name: 'Priya Gupta', role: 'Family Trip Planner', quote: 'Booked a 45-seater for our family pilgrimage to Varanasi. Driver was courteous, bus was spotless and the AC worked perfectly throughout.', rating: 5 },
-  { name: 'Vikram Tiwari', role: 'College Fest Coordinator', quote: 'Arranged 3 buses for our inter-college fest. All arrived on time, drivers were cooperative and students had a great experience.', rating: 5 },
-  { name: 'Sneha Agarwal', role: 'HR Manager', quote: 'We use Asia Bus for all our annual company outings. Transparent pricing, no last-minute surprises. Highly recommended for corporate travel.', rating: 4 },
-  { name: 'Rajesh Yadav', role: 'Travel Agent', quote: 'Been partnering with them for 3 years now. Never had a single complaint from my clients. Their fleet is well-maintained and drivers are experienced.', rating: 5 },
+  { name: 'Rajesh Sharma', role: 'Corporate Trip', quote: 'Excellent service for our company outing. Professional drivers and well-maintained buses.' },
+  { name: 'Priya Gupta', role: 'Wedding Transport', quote: 'Made our wedding logistics seamless. All guests were comfortable and on time.' },
+  { name: 'Amit Verma', role: 'School Excursion', quote: 'Safe, punctual and reliable. The kids loved the journey. Highly recommended for school trips.' },
 ];
