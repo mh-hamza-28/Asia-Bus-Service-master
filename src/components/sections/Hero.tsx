@@ -175,8 +175,8 @@ export function Hero({ onBook }: HeroProps) {
             </motion.div>
           </div>
 
-          {/* Spacer pushes cards down */}
-          <div className="flex-1" />
+          {/* Spacer — capped so cards don't push too far down on tall screens */}
+          <div className="flex-1 max-h-24 sm:max-h-32" />
 
           {/* BOTTOM: 5-card block */}
           <div>
@@ -242,17 +242,13 @@ export function Hero({ onBook }: HeroProps) {
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 py-2.5 text-xs font-semibold text-white backdrop-blur-sm transition-colors active:bg-white/20"
               >
-                <svg viewBox="0 0 48 48" width="16" height="16" fill="none">
-                  <path d="M24 4C12.95 4 4 12.95 4 24c0 3.54.93 6.86 2.56 9.73L4 44l10.52-2.76A19.87 19.87 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4z" fill="#25D366" />
-                  <path d="M33.2 28.64c-.46-.23-2.73-1.35-3.15-1.5-.42-.15-.73-.23-.1.04.23-.42.8-1.35 1.1-1.65.3-.3.6-.23.82-.52.07-.1.07-.45-.08-.72-.15-.28-1.35-3.3-1.85-4.52-.48-1.18-.98-1.02-1.35-1.04-.35-.02-.75-.02-1.15-.02s-1.05.15-1.6.75c-.55.6-2.1 2.05-2.1 5s2.15 5.8 2.45 6.2c.3.4 4.18 6.65 10.3 9.06 1.25.48 2.22.78 2.98 1 .76.22 1.72.22 2.82-.14 1.1-.36 2.73-1.12 3.12-2.22.4-1.1.4-2.05.28-2.25-.12-.2-.42-.32-.88-.55z" fill="white" />
-                </svg>
-                WhatsApp
+                <SocialImg src={whatsappImg} alt="WhatsApp" size={20} /> WhatsApp
               </a>
               <button
                 onClick={onBook}
                 className="rounded-xl bg-brand-accent py-2.5 text-xs font-bold text-white transition-colors active:bg-brand-accent-light"
               >
-                Book Online
+                Send Inquiry
               </button>
             </motion.div>
           </div>
@@ -312,19 +308,14 @@ export function Hero({ onBook }: HeroProps) {
                   href={company.whatsappHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-                >
-                  <svg viewBox="0 0 48 48" width="20" height="20" fill="none">
-                    <path d="M24 4C12.95 4 4 12.95 4 24c0 3.54.93 6.86 2.56 9.73L4 44l10.52-2.76A19.87 19.87 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4z" fill="#25D366" />
-                    <path d="M33.2 28.64c-.46-.23-2.73-1.35-3.15-1.5-.42-.15-.73-.23-.1.04.23-.42.8-1.35 1.1-1.65.3-.3.6-.23.82-.52.07-.1.07-.45-.08-.72-.15-.28-1.35-3.3-1.85-4.52-.48-1.18-.98-1.02-1.35-1.04-.35-.02-.75-.02-1.15-.02s-1.05.15-1.6.75c-.55.6-2.1 2.05-2.1 5s2.15 5.8 2.45 6.2c.3.4 4.18 6.65 10.3 9.06 1.25.48 2.22.78 2.98 1 .76.22 1.72.22 2.82-.14 1.1-.36 2.73-1.12 3.12-2.22.4-1.1.4-2.05.28-2.25-.12-.2-.42-.32-.88-.55z" fill="white" />
-                  </svg>
-                  WhatsApp
-                </a>
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
+                  <SocialImg src={whatsappImg} alt="WhatsApp" size={24} /> WhatsApp
+                  </a>
                 <button
                   onClick={onBook}
                   className="rounded-2xl bg-brand-accent px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-accent-light"
                 >
-                  Book Online
+                  Send Inquiry
                 </button>
               </motion.div>
             </div>

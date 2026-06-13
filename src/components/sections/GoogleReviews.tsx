@@ -10,7 +10,7 @@ export function GoogleReviews() {
         </div>
         <div data-reveal className="mt-8">
           <div
-            className="elfsight-app-fc482248-f06a-420c-8e85-85666cafacb9"
+            className="elfsight-app-4e2a01ca-5a7c-4384-afb5-c83ed2a9838f"
             data-elfsight-app-lazy
           />
         </div>

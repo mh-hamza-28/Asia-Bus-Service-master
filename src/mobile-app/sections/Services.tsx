@@ -6,7 +6,7 @@ type ServicesProps = {
   onBook: () => void;
 };
 
-/* Top 3 deals with pricing & route info */
+/* Top 3 deals with pricing & route info — 2x2 grid with View More in 4th slot */
 const topDeals = [
   {
     serviceIndex: 0,
@@ -54,7 +54,7 @@ export function Services({ onBook }: ServicesProps) {
           </p>
         </div>
 
-        {/* Mobile: 2 per row | Tablet+: same as shared */}
+        {/* Mobile: 2 per row, 3 cards + View More in 4th slot */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {topDeals.map(({ serviceIndex, destination, price, priceNote, seats, type, duration, image }, i) => {
             const service = services[serviceIndex];
@@ -122,16 +122,20 @@ export function Services({ onBook }: ServicesProps) {
               </article>
             );
           })}
-        </div>
 
-        {/* View More */}
-        <div data-reveal className="mt-8 flex justify-center sm:mt-10">
+          {/* View More — occupies the 4th card slot in the 2x2 grid */}
           <Link
             to="/services"
-            className="group flex items-center gap-2 rounded-2xl border border-brand-deep/10 bg-brand-light px-4 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/30 hover:shadow-md sm:gap-3 sm:px-5 sm:py-3.5"
+            data-reveal
+            className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-brand-deep/15 bg-brand-light p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/40 hover:shadow-lg sm:rounded-3xl sm:p-6"
           >
-            <span className="text-xs font-semibold text-brand-deep sm:text-sm sm:text-base">View More Services</span>
-            <ArrowRight size={14} className="text-brand-accent transition-transform group-hover:translate-x-1 sm:size-[16px]" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent/10 transition-colors group-hover:bg-brand-accent/20 sm:h-14 sm:w-14">
+              <ArrowRight size={22} className="text-brand-accent transition-transform group-hover:translate-x-1 sm:size-[26px]" />
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-bold text-brand-deep sm:text-base">View More</p>
+              <p className="mt-0.5 text-[10px] text-brand-muted sm:text-xs">All Services</p>
+            </div>
           </Link>
         </div>
       </div>
