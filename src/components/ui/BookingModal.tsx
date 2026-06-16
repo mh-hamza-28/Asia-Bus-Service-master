@@ -83,11 +83,12 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
                 <h2 id="booking-title" className="mt-2 font-display text-2xl font-bold text-brand-deep sm:text-3xl">
                   Book Your Bus
                 </h2>
+                <div className="mt-1 h-0.5 w-16 rounded-full shimmer-accent" />
                 <p className="mt-2 text-sm text-brand-muted">
                   Share your travel details and our team will call you with the best options.
                 </p>
 
-                <form className="mt-6 grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
+                <form className="stagger-children mt-6 grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
                   <input {...register('fullName', { required: true })} placeholder="Full Name" className="field" aria-label="Full Name" />
                   <input {...register('mobile', { required: true })} placeholder="Mobile Number" className="field" aria-label="Mobile Number" />
                   <select {...register('service', { required: true })} className="field" aria-label="Service Required" defaultValue="">

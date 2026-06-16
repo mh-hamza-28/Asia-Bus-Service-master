@@ -188,11 +188,13 @@ export function Hero({ onBook }: HeroProps) {
               transition={{ duration: 0.5, delay: 0.35 }}
             >
               {navCards.map(({ label, href, icon: Icon }, i) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-brand-deep/75 to-brand-deep/55 px-3.5 py-3.5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/50 hover:from-brand-deep/85 hover:to-brand-deep/65 hover:shadow-lg hover:shadow-brand-accent/15 active:translate-y-0 sm:px-4 sm:py-4"
-                  style={{ animationDelay: `${i * 80}ms` }}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.35 + i * 0.1, ease: 'easeOut' }}
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-accent/30 ring-1 ring-brand-accent/40 text-white transition-all duration-300 group-hover:bg-brand-accent/40 group-hover:ring-brand-accent/60 sm:h-10 sm:w-10">
                     <Icon size={17} />
@@ -202,7 +204,7 @@ export function Hero({ onBook }: HeroProps) {
                     <span className="text-[9px] text-white/55 sm:text-[10px]">Explore</span>
                   </div>
                   <svg className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-brand-accent/0 transition-all duration-300 group-hover:text-brand-accent/60 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                </a>
+                </motion.a>
               ))}
             </motion.div>
 
@@ -330,11 +332,13 @@ export function Hero({ onBook }: HeroProps) {
               {/* 2x2 Navigation Cards */}
               <div className="grid grid-cols-2 gap-2.5">
                 {navCards.map(({ label, href, icon: Icon }, i) => (
-                  <a
+                  <motion.a
                     key={label}
                     href={href}
                     className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-brand-deep/75 to-brand-deep/55 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/50 hover:from-brand-deep/85 hover:to-brand-deep/65 hover:shadow-lg hover:shadow-brand-accent/15"
-                    style={{ animationDelay: `${i * 80}ms` }}
+                    initial={{ opacity: 0, y: 24, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 + i * 0.12, ease: 'easeOut' }}
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/30 ring-1 ring-brand-accent/40 text-white transition-all duration-300 group-hover:bg-brand-accent/40 group-hover:ring-brand-accent/60">
                       <Icon size={19} />
@@ -344,7 +348,7 @@ export function Hero({ onBook }: HeroProps) {
                       <span className="text-[10px] text-white/55">Explore</span>
                     </div>
                     <svg className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-accent/0 transition-all duration-300 group-hover:text-brand-accent/60 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
 

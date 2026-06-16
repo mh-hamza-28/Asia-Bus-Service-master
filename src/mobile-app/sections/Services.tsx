@@ -44,31 +44,30 @@ export function Services({ onBook }: ServicesProps) {
   return (
     <section id="services" className="section bg-white text-brand-deep">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 sm:px-8">
-        <div data-reveal className="mx-auto max-w-3xl text-center">
+        <div data-reveal="right" className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">What We Offer</p>
           <h2 className="section-title text-center text-brand-deep">
             Top Deals,<br className="sm:hidden" /> <span className="highlight-text">Best Journeys</span>
           </h2>
+          <div className="mx-auto mt-3 h-1 w-20 rounded-full shimmer-accent" />
           <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-brand-muted sm:mt-5 sm:text-base sm:leading-8">
             Handpicked routes with premium coaches at competitive prices.
           </p>
         </div>
 
         {/* Mobile: 2 per row, 3 cards + View More in 4th slot */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 stagger-children sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {topDeals.map(({ serviceIndex, destination, price, priceNote, seats, type, duration, image }, i) => {
             const service = services[serviceIndex];
             return (
-              <article
-                key={destination}
-                data-reveal
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-deep/6 bg-brand-light shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 sm:rounded-3xl sm:hover:-translate-y-2"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                {/* Top Deal badge */}
-                <span className="absolute left-2 top-2 z-10 rounded-full bg-brand-accent px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white shadow-lg sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
-                  Top Deal
-                </span>
+              <div key={destination} className="card-3d">
+                <article
+                  className="card-3d-inner group relative flex flex-col overflow-hidden rounded-2xl border border-brand-deep/6 bg-brand-light shadow-sm sm:rounded-3xl"
+                >
+                  {/* Top Deal badge */}
+                  <span className="animate-float-pulse absolute left-2 top-2 z-10 rounded-full bg-brand-accent px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white shadow-lg sm:left-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[10px]">
+                    Top Deal
+                  </span>
 
                 {/* Image */}
                 <div className="relative h-32 overflow-hidden sm:h-52">
@@ -117,16 +116,16 @@ export function Services({ onBook }: ServicesProps) {
                   </button>
                 </div>
 
-                {/* Bottom accent bar */}
-                <div className="h-0.5 w-full bg-gradient-to-r from-brand-accent/0 via-brand-accent/60 to-brand-accent/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:h-1" />
-              </article>
+                {/* Bottom shimmer accent bar */}
+                <div className="h-0.5 w-full shimmer-accent opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:h-1" />
+                </article>
+              </div>
             );
           })}
 
-          {/* View More — occupies the 4th card slot in the 2x2 grid */}
+          {/* View More — occupies the 4th card slot */}
           <Link
             to="/services"
-            data-reveal
             className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-brand-deep/15 bg-brand-light p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-accent/40 hover:shadow-lg sm:rounded-3xl sm:p-6"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent/10 transition-colors group-hover:bg-brand-accent/20 sm:h-14 sm:w-14">

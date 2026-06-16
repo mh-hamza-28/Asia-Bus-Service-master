@@ -49,8 +49,8 @@ export default function MobileApp({ onBook, openInquiry }: MobileAppProps) {
         <MapSection />
         <Services onBook={onBook} />
         <GoogleReviews />
-        <Fleet onBook={onBook} />
         <WhyChooseUs />
+        <Fleet onBook={onBook} />
         <CTA onInquiry={openInquiry} />
         <Contact onInquiry={openInquiry} />
       </main>

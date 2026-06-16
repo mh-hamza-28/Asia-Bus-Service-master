@@ -29,7 +29,7 @@ export function Contact({ onInquiry }: ContactProps) {
   return (
     <section id="contact" className="section bg-brand-warm text-brand-deep">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div data-reveal className="mx-auto max-w-3xl text-center">
+        <div data-reveal="right" className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Get in Touch</p>
           <h2 className="section-title text-center text-brand-deep">
             Book Fast,<br /> <span className="highlight-text">Travel Better</span>
@@ -39,8 +39,8 @@ export function Contact({ onInquiry }: ContactProps) {
 
       <div className="mx-auto mt-10 grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Contact info */}
-        <div data-reveal>
-          <div className="grid gap-4">
+        <div data-reveal="left">
+          <div className="stagger-children grid gap-4">
             <a className="contact-card" href={company.phoneHref}>
               <Phone className="shrink-0 text-brand-accent" size={20} />
               <span><strong>Phone</strong>{company.phone}</span>
@@ -83,14 +83,15 @@ export function Contact({ onInquiry }: ContactProps) {
 
         {/* Contact form */}
         <form
-          data-reveal
+          data-reveal="right"
           onSubmit={handleSubmit(onSubmit)}
           className="rounded-3xl border border-brand-deep/8 bg-white p-6 shadow-lg sm:p-8"
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent">Send Inquiry</p>
           <h3 className="mt-2 text-2xl font-bold text-brand-deep">Tell us your route</h3>
+          <div className="mt-1 h-0.5 w-16 rounded-full shimmer-accent" />
 
-          <div className="mt-6 grid gap-4">
+          <div className="stagger-children mt-6 grid gap-4">
             <input className="field" placeholder="Full Name" aria-label="Full Name" {...register('fullName', { required: true })} />
             <input className="field" placeholder="Mobile Number" aria-label="Mobile Number" {...register('mobile', { required: true })} />
             <select className="field" aria-label="Service Required" defaultValue="" {...register('service', { required: true })}>

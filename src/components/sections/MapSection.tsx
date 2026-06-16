@@ -5,9 +5,9 @@ export function MapSection() {
   return (
     <section id="location" className="bg-white py-8 sm:py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div data-reveal className="grid items-stretch gap-4 md:grid-cols-[1fr_auto] md:gap-6">
+        <div data-reveal="left" className="card-3d grid items-stretch gap-4 md:grid-cols-[1fr_auto] md:gap-6">
           {/* Map embed */}
-          <div className="overflow-hidden rounded-2xl border border-brand-deep/8 shadow-sm">
+          <div className="card-3d-inner overflow-hidden rounded-2xl border border-brand-deep/8 shadow-sm">
             <iframe
               title="Asia Bus Service Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.06!2d80.9278!3d26.8467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd0c9b1a3c1d%3A0x4b1207f8e24b1234!2sChowk%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"

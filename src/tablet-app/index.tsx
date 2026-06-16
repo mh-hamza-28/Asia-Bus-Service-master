@@ -33,8 +33,8 @@ export default function TabletApp({ onBook, openInquiry }: TabletAppProps) {
         <MapSection />
         <Services onBook={onBook} />
         <GoogleReviews />
-        <Fleet onBook={onBook} />
         <WhyChooseUs />
+        <Fleet onBook={onBook} />
         <CTA onInquiry={openInquiry} />
         <Contact onInquiry={openInquiry} />
       </main>

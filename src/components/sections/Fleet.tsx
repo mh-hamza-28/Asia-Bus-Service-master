@@ -61,11 +61,12 @@ export function Fleet({ onBook }: FleetProps) {
   return (
     <section id="fleet" className="section bg-brand-deep text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div data-reveal className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center">
+        <div data-reveal="left" className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center">
           <p className="eyebrow">Our Fleet</p>
           <h2 className="section-title text-center text-white">
             Buses Built for<br /> <span className="highlight-text">Comfort</span>
           </h2>
+          <div className="mx-auto mt-3 h-1 w-20 rounded-full shimmer-accent" />
           <p className="mx-auto max-w-lg text-base leading-8 text-white/55">
             Clean interiors, smooth rides, and attention to detail passengers notice.
           </p>
@@ -79,11 +80,10 @@ export function Fleet({ onBook }: FleetProps) {
           {galleryItems.map((item, index) => (
             <article
               key={item.name}
-              data-reveal
-              className={`group relative overflow-hidden rounded-2xl ${item.tall && index < 4 ? 'sm:row-span-2' : ''}`}
-              style={{ transitionDelay: `${index * 60}ms` }}
+              data-reveal="scale"
+              className={`gallery-3d ${item.tall && index < 4 ? 'sm:row-span-2' : ''}`}
             >
-              <div className={`relative w-full overflow-hidden ${item.tall && index < 4 ? 'h-64 sm:h-full sm:min-h-[28rem]' : 'h-52 sm:h-60'}`}>
+              <div className={`gallery-3d-inner relative w-full overflow-hidden rounded-2xl ${item.tall && index < 4 ? 'h-64 sm:h-full sm:min-h-[28rem]' : 'h-52 sm:h-60'}`}>
                 <img
                   src={item.image}
                   alt={`${item.name} fleet gallery`}

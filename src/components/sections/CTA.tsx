@@ -11,7 +11,7 @@ export function CTA({ onInquiry }: CTAProps) {
       <img src={images.road} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy" />
       <div className="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-primary/90 to-brand-primary/70" />
 
-      <div data-reveal className="relative mx-auto max-w-4xl text-center">
+      <div data-reveal="scale" className="relative mx-auto max-w-4xl text-center">
         <p className="eyebrow">Book Now</p>
         <h2 className="mt-4 text-center font-display text-4xl font-extrabold leading-[0.9] tracking-tight sm:text-6xl lg:text-7xl">
           Ready to Travel?<br />
@@ -21,16 +21,16 @@ export function CTA({ onInquiry }: CTAProps) {
           Call us directly for the fastest booking, or send an inquiry and our team will reach out within the hour.
         </p>
 
-        <div className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row sm:justify-center">
+        <div className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row sm:justify-center stagger-children">
           <a
             href={company.phoneHref}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-accent/25"
+            className="card-3d inline-flex items-center justify-center gap-2 rounded-full bg-brand-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-accent/30"
           >
             <Phone size={17} /> Call to Book
           </a>
           <button
             onClick={onInquiry}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/12"
+            className="card-3d inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-white/15 hover:shadow-xl hover:shadow-white/5"
           >
             Send Inquiry <ArrowRight size={15} />
           </button>

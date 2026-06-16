@@ -4,7 +4,7 @@ import { company, navLinks } from '../../data/siteData';
 export function Footer() {
   return (
     <footer className="bg-brand-deep px-6 py-14 text-white sm:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_1fr]">
+      <div data-reveal className="mx-auto grid max-w-7xl gap-10 stagger-children md:grid-cols-[1.2fr_0.8fr_1fr]">
         {/* Brand */}
         <div>
           <p className="font-display text-2xl font-bold">
@@ -56,7 +56,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
+      <div data-reveal className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-white/8 pt-6 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Asia Bus Service. All rights reserved.</p>
         <p>Comfort. Safety. Luxury. Every Journey.</p>
       </div>
