@@ -1,13 +1,12 @@
 /**
  * Web Portal section components.
- * Re-exports shared sections by default. Override any section
- * in this folder to provide a web-specific version.
+ * All sections are web-optimized copies in web-portal/sections/
  */
-export { Hero } from '../../components/sections/Hero';
-export { MapSection } from '../../components/sections/MapSection';
-export { Services } from '../../components/sections/Services';
-export { GoogleReviews } from '../../components/sections/GoogleReviews';
-export { Fleet } from '../../components/sections/Fleet';
-export { WhyChooseUs } from '../../components/sections/WhyChooseUs';
-export { CTA } from '../../components/sections/CTA';
-export { Contact } from '../../components/sections/Contact';
+export { Hero } from './Hero';
+export { Services } from './Services';
+export { Fleet } from './Fleet';
+export { MapSection } from './MapSection';
+export { WhyChooseUs } from './WhyChooseUs';
+export { GoogleReviews } from './GoogleReviews';
+export { CTA } from './CTA';
+export { Contact } from './Contact';

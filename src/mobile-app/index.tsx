@@ -8,7 +8,7 @@ import { Fleet } from './sections';
 import { WhyChooseUs } from './sections';
 import { CTA } from './sections';
 import { Contact } from './sections';
-import { MobileFooter } from './MobileFooter';
+import { MobileFooter } from './sections/MobileFooter';
 import { FloatingCall } from '../components/ui/FloatingCall';
 import { FloatingWhatsapp } from '../components/ui/FloatingWhatsapp';
 import { useScrollReveal } from '../hooks/useScrollReveal';

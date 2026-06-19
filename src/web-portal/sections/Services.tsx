@@ -243,18 +243,18 @@ export function Services({ onBook }: ServicesProps) {
           className="absolute inset-0 z-10 flex items-center justify-center rounded-3xl"
           style={{ opacity: 0, willChange: 'opacity' }}
         >
-          <div className="absolute inset-0 rounded-3xl bg-brand-deep backdrop-blur-2xl" />
+          <div className="absolute inset-0 rounded-3xl border border-white/60 bg-white/95 backdrop-blur-2xl" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.03), 0 8px 32px rgba(11,31,23,0.08)' }} />
           <div className="glass-btn relative flex flex-col items-center gap-4 px-6 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-accent sm:text-sm">All Services</p>
             <Link
               to="/services"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border-2 border-brand-accent/40 bg-white/10 px-10 py-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/70 hover:bg-white/15 hover:shadow-2xl hover:shadow-brand-accent/20 sm:px-14 sm:py-6"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border-2 border-brand-accent/40 bg-brand-light px-10 py-5 transition-all duration-500 hover:-translate-y-1 hover:border-brand-accent/70 hover:shadow-2xl hover:shadow-brand-accent/15 sm:px-14 sm:py-6"
             >
               <div className="absolute inset-0 shimmer-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <span className="relative font-display text-lg font-bold text-white sm:text-xl">View All Services</span>
+              <span className="relative font-display text-lg font-bold text-brand-deep sm:text-xl">View All Services</span>
               <ArrowRight size={20} className="relative text-brand-accent transition-transform group-hover:translate-x-2" />
             </Link>
-            <p className="text-xs text-white/40 sm:text-sm">Explore all 8 premium services</p>
+            <p className="text-xs text-brand-muted sm:text-sm">Explore all 8 premium services</p>
           </div>
         </div>
       </div>

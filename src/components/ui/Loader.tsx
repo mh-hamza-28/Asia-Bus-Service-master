@@ -1,12 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { useDeviceType } from '../../hooks/useDeviceType';
 
 type LoaderProps = {
   onDone: () => void;
 };
 
-/* Inline SVG: Asia logo (orange triangle + A + ASIA text) */
+/* Asia Logo SVG */
 function AsiaLogoSVG() {
   return (
     <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 'clamp(160px, 38vw, 260px)', height: 'auto' }}>
@@ -17,37 +16,36 @@ function AsiaLogoSVG() {
   );
 }
 
+/* Wave text - each letter wrapped in span */
+function WaveText({ text, className = '' }: { text: string; className?: string }) {
+  return (
+    <span className={`wave-text ${className}`}>
+      {text.split('').map((char, i) => (
+        <span key={i} style={{ animationDelay: `${i * 0.08}s` }}>
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export function Loader({ onDone }: LoaderProps) {
-  const [phase, setPhase] = useState<'logo-in' | 'bus-transit' | 'text-reveal' | 'done'>('logo-in');
-  const device = useDeviceType();
-  const isMobile = device === 'mobile';
+  const [phase, setPhase] = useState<'logo' | 'bus' | 'done'>('logo');
 
   useEffect(() => {
-    // Phase 1: Logo appears and stays (0 - 2.5s)
-    const busTimer = setTimeout(() => setPhase('bus-transit'), 2500);
-    // Phase 2: Bus crosses screen (2.5s - 6.8s)
-    const textOrDoneTimer = setTimeout(() => {
-      if (isMobile) {
-        // Mobile: show "Happy Journey" text after bus disappears
-        setPhase('text-reveal');
-      } else {
-        setPhase('done');
-      }
-    }, 6800);
-    // Phase 3 (mobile only): text visible then done
-    const doneTimer = isMobile
-      ? setTimeout(() => setPhase('done'), 9000)
-      : null;
+    // Phase 1: Logo appears + glows (0 - 2.2s)
+    const busTimer = setTimeout(() => setPhase('bus'), 2200);
+    // Phase 2: Bus enters, stops, shows text, exits (2.2s - 6.2s)
+    const doneTimer = setTimeout(() => setPhase('done'), 6200);
     return () => {
       clearTimeout(busTimer);
-      clearTimeout(textOrDoneTimer);
-      if (doneTimer) clearTimeout(doneTimer);
+      clearTimeout(doneTimer);
     };
-  }, [isMobile]);
+  }, []);
 
   useEffect(() => {
     if (phase === 'done') {
-      const t = setTimeout(onDone, 400);
+      const t = setTimeout(onDone, 500);
       return () => clearTimeout(t);
     }
   }, [phase, onDone]);
@@ -58,61 +56,91 @@ export function Loader({ onDone }: LoaderProps) {
         <motion.div
           className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-black"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
+          {/* Subtle radial bg glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(201,168,76,0.04),transparent_60%)]" />
+
+          {/* Floating particles */}
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              className="particle"
+              style={{
+                left: `${8 + Math.random() * 84}%`,
+                width: `${2 + Math.random() * 4}px`,
+                height: `${2 + Math.random() * 4}px`,
+                animationDuration: `${4 + Math.random() * 6}s`,
+                animationDelay: `${Math.random() * 3}s`,
+                background: `rgba(201, 168, 76, ${0.15 + Math.random() * 0.2})`,
+              }}
+            />
+          ))}
+
           <div className="relative flex w-full flex-col items-center justify-center">
 
-            {/* ─── LOGO (visible during logo-in only) ─── */}
-            {phase === 'logo-in' && (
+            {/* ─── LOGO PHASE (0 - 2.2s) ─── */}
+            {phase === 'logo' && (
               <motion.div
                 className="absolute flex flex-col items-center"
-                initial={{ opacity: 0, scale: 0.3, rotate: -40 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1.2, ease: 'easeOut' }}
+                initial={{ opacity: 0, scale: 0.4 }}
+                animate={{ opacity: [0, 1, 1], scale: [0.4, 1.05, 1] }}
+                exit={{ opacity: 0, scale: 0.6 }}
+                transition={{ duration: 2.2, times: [0, 0.5, 1], ease: 'easeOut' }}
               >
-                <AsiaLogoSVG />
+                <div className="animate-logo-glow">
+                  <AsiaLogoSVG />
+                </div>
                 <motion.p
                   className="mt-4 text-sm font-semibold uppercase tracking-[0.38em] text-brand-accent sm:text-base"
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
                 >
                   Travel in Refined Comfort
                 </motion.p>
               </motion.div>
             )}
 
-            {/* ─── BUS TRANSIT ─── */}
-            {phase === 'bus-transit' && (
+            {/* ─── BUS PHASE (2.2s - 6.2s) ─── */}
+            {phase === 'bus' && (
               <motion.div
                 className="flex items-center"
                 initial={{ x: '-140vw', filter: 'blur(4px)' }}
                 animate={{
-                  x: ['-140vw', '-5vw', '-5vw', '125vw'],
+                  x: ['-140vw', '-5vw', '-5vw', '130vw'],
                   filter: ['blur(4px)', 'blur(0px)', 'blur(0px)', 'blur(5px)'],
                 }}
                 transition={{
-                  duration: 4.3,
-                  times: [0, 0.32, 0.68, 1],
+                  duration: 4,
+                  times: [0, 0.3, 0.6, 1],
                   ease: ['easeOut', 'easeInOut', 'easeIn'],
                 }}
               >
-                {/* Happy Journey — behind bus on web only */}
-                {!isMobile && (
-                  <motion.div
-                    className="mr-4 flex flex-col items-end gap-1 sm:mr-6"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.2, duration: 0.7, ease: 'easeOut' }}
+                {/* Happy Journey — trailing behind bus with wave + gold glow */}
+                <motion.div
+                  className="mr-4 flex flex-col items-end gap-1 sm:mr-8"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}
+                >
+                  <h2
+                    className="font-display text-2xl font-extrabold whitespace-nowrap tracking-tight text-white sm:text-4xl lg:text-5xl"
+                    style={{
+                      textShadow: '0 0 15px rgba(201,168,76,0.6), 0 0 40px rgba(201,168,76,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    }}
                   >
-                    <h2 className="font-display text-2xl font-extrabold whitespace-nowrap tracking-tight text-white sm:text-4xl lg:text-5xl">
-                      Happy <span className="text-brand-accent">Journey</span>
-                    </h2>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 sm:text-xs">
-                      Asia Bus Service
-                    </p>
-                  </motion.div>
-                )}
+                    <WaveText text="Happy Journey" />
+                  </h2>
+                  <motion.p
+                    className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80 sm:text-xs"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.8, duration: 0.5 }}
+                  >
+                    Asia Bus Service
+                  </motion.p>
+                </motion.div>
 
                 {/* Bus */}
                 <div>
@@ -130,27 +158,6 @@ export function Loader({ onDone }: LoaderProps) {
                     <span />
                   </div>
                 </div>
-              </motion.div>
-            )}
-
-            {/* ─── TEXT REVEAL (mobile only — appears after bus exits) ─── */}
-            {phase === 'text-reveal' && (
-              <motion.div
-                className="absolute flex flex-col items-center gap-1"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: [0, 1, 1, 0], scale: [0.9, 1, 1, 1.05] }}
-                transition={{
-                  duration: 2,
-                  times: [0, 0.25, 0.65, 1],
-                  ease: ['easeOut', 'linear', 'easeIn'],
-                }}
-              >
-                <h2 className="font-display text-2xl font-extrabold tracking-tight text-white">
-                  Happy <span className="text-brand-accent">Journey</span>
-                </h2>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40">
-                  Asia Bus Service
-                </p>
               </motion.div>
             )}
           </div>

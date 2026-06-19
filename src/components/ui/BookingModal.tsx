@@ -25,7 +25,8 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
   const { register, handleSubmit, reset, formState } = useForm<BookingForm>();
 
   const onSubmit = (data: BookingForm) => {
-    console.info('Asia Bus Service booking inquiry:', data);
+    const msg = `*New Booking — Asia Bus Service*%0A%0A*Name:* ${data.fullName}%0A*Mobile:* ${data.mobile}%0A*Service:* ${data.service}%0A*From Date:* ${data.fromDate}%0A*To Date:* ${data.toDate}%0A*Pickup:* ${data.fromDestination}%0A*Destination:* ${data.toDestination}%0A*Message:* ${data.message || 'N/A'}`;
+    window.open(`https://wa.me/919559222275?text=${msg}`, '_blank');
     setSubmitted(true);
     reset();
   };

@@ -1,9 +1,9 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { company, navLinks } from '../data/siteData';
-import instagramImg from '../assets/images/icons/instagram.png';
-import whatsappImg from '../assets/images/icons/whatsapp.png';
-import facebookImg from '../assets/images/icons/facebook.png';
-import justdialImg from '../assets/images/icons/justdial.png';
+import { company, navLinks } from '../../data/siteData';
+import instagramImg from '../../assets/images/icons/instagram.png';
+import whatsappImg from '../../assets/images/icons/whatsapp.png';
+import facebookImg from '../../assets/images/icons/facebook.png';
+import justdialImg from '../../assets/images/icons/justdial.png';
 
 const socialIcons = [
   { src: instagramImg, alt: 'Instagram', href: company.socials.instagram },
