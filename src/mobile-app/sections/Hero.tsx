@@ -87,7 +87,7 @@ export function Hero({ onBook }: HeroProps) {
           ))}
         </div>
 
-        <div className="relative flex min-h-[100dvh] flex-col px-4 pb-6 pt-28">
+        <div className="relative flex min-h-[100dvh] flex-col justify-between px-4 pb-6 pt-28">
           {/* Heading */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}>
             <p className="reveal-line mb-2.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-brand-accent">
@@ -105,28 +105,53 @@ export function Hero({ onBook }: HeroProps) {
             </p>
           </motion.div>
 
-          {/* Quick stats */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {quickStats.map(({ icon: Icon, text }) => (
-              <span key={text} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-white/70 backdrop-blur-sm">
-                <Icon size={11} className="text-brand-accent" /> {text}
+          {/* Quick stats: constrained to heading width (centered under the hero text) */}
+          <div className="mt-3 w-full max-w-xs sm:max-w-md">
+            <div className="grid grid-cols-2 gap-2">
+              {quickStats.slice(0, 2).map(({ icon: Icon, text }) => (
+                <span key={text} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-white/70 backdrop-blur-sm">
+                  <Icon size={12} className="text-brand-accent" /> {text}
+                </span>
+              ))}
+            </div>
+            <div className="mt-2 flex justify-center">
+              <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-white/70 backdrop-blur-sm">
+                <MapPin size={12} className="text-brand-accent" /> {quickStats[2].text}
               </span>
-            ))}
+            </div>
           </div>
 
-          {/* Social icons — horizontal row */}
-          <motion.div className="mt-5 flex items-center gap-2.5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }}>
-            {socials.map((social) => (
-              <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" className="social-icon flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 active:scale-110" aria-label={social.alt}>
-                <img src={social.src} alt={social.alt} width={38} height={38} className="aspect-square rounded-xl object-contain" loading="lazy" />
-              </a>
-            ))}
-          </motion.div>
+          {/* Social icons*/}
+         <motion.div
+  className="absolute right-4 top-32 z-20 flex flex-col gap-3"
+  initial={{ opacity: 0, x: 30 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6, delay: 0.5 }}
+>
+  {socials.map((social) => (
+    <a
+      key={social.alt}
+      href={social.href}
+      target="_blank"
+      rel="noreferrer"
+      className="social-icon flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 hover:scale-110"
+      aria-label={social.alt}
+    >
+      <img
+        src={social.src}
+        alt={social.alt}
+        width={38}
+        height={38}
+        className="rounded-xl object-contain"
+      />
+    </a>
+  ))}
+</motion.div>
 
-          <div className="flex-1 max-h-24" />
+          <div className="flex-1 max-h-6" />
 
           {/* 2x2 Navigation Cards */}
-          <motion.div className="grid grid-cols-2 gap-2.5" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}>
+          <motion.div className="mt-2 grid grid-cols-2 gap-2.5" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}>
             {navCards.map(({ label, href, icon: Icon }, i) => (
               <motion.a
                 key={label}
@@ -150,7 +175,7 @@ export function Hero({ onBook }: HeroProps) {
           {/* Book Now Card */}
           <motion.a
             href={company.phoneHref}
-            className="animate-gentle-bounce mt-2.5 flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 shadow-2xl shadow-black/30"
+            className="animate-gentle-bounce mt-10 flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-3 shadow-2xl shadow-black/30"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}

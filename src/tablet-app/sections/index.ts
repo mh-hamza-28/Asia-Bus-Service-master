@@ -10,4 +10,4 @@ export { MapSection } from '../../components/sections/MapSection';
 export { WhyChooseUs } from '../../components/sections/WhyChooseUs';
 export { GoogleReviews } from '../../components/sections/GoogleReviews';
 export { CTA } from '../../components/sections/CTA';
-export { Contact } from '../../components/sections/Contact';
+export { ContactMobile as Contact } from '../../components/sections/ContactMobile';
