@@ -26,7 +26,7 @@ export function Fleet({ onBook }: FleetProps) {
 
         <div className="mt-10 grid grid-cols-2 gap-3 stagger-children">
           {galleryItems.map((item) => (
-            <article key={item.name} data-reveal className="group relative overflow-hidden rounded-2xl" onClick={onBook}>
+            <article key={item.name} data-reveal="scale" className="group relative overflow-hidden rounded-2xl border-2 border-brand-accent/20 transition-all duration-300 active:scale-[0.98]" onClick={onBook}>
               <div className="h-36">
                 <img src={item.image} alt={`${item.name} fleet`} className="h-full w-full object-cover transition-transform duration-500 group-active:scale-105" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/85 via-transparent to-transparent" />

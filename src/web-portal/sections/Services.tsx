@@ -27,7 +27,7 @@ const servicePairs = [
 function ServiceCard({ card, onBook }: { card: typeof servicePairs[0]['left']; onBook: () => void }) {
   const service = services[card.serviceIndex];
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-3xl border border-brand-deep/6 bg-brand-light shadow-lg transition-shadow duration-500 hover:shadow-2xl hover:shadow-brand-accent/15">
+    <article className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-brand-accent/15 bg-brand-light shadow-lg transition-all duration-500 hover:border-brand-accent/35 hover:shadow-2xl hover:shadow-brand-accent/15">
       <span className="deal-badge animate-float-pulse">Premium</span>
       <div className="relative h-32 overflow-hidden sm:h-48">
         <img src={card.image} alt={`${card.destination} by Asia Bus Service`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
@@ -103,9 +103,6 @@ export function Services({ onBook }: ServicesProps) {
         const base = i * 0.5;
         const isLast = i === totalPairs - 1;
 
-        // Fade out center button for last pair
-        const centerBtn = pair.querySelector('.pair-btn-inner');
-
         if (i === 0) {
           // First pair already peeking — go straight to arrive fully
           tl.call(() => pair.classList.add('active'), [], base);
@@ -140,13 +137,7 @@ export function Services({ onBook }: ServicesProps) {
           );
         }
 
-        // Hide center button for last pair when it arrives
-        if (isLast && centerBtn) {
-          tl.to(centerBtn,
-            { opacity: 0, scale: 0.8, duration: 0.1, ease: 'power2.in' },
-            base + 0.15
-          );
-        }
+        // Hide center button for last pair when it arrives — no longer needed
 
         // STEP 3: For non-last pairs — exit + next pair peeks simultaneously
         if (!isLast) {
@@ -208,26 +199,11 @@ export function Services({ onBook }: ServicesProps) {
           {servicePairs.map((pair, i) => (
             <div
               key={i}
-              className="svc-pair pointer-events-none absolute inset-0 grid grid-cols-1 items-start gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-5"
+              className="svc-pair pointer-events-none absolute inset-0 grid grid-cols-1 items-start gap-3 sm:grid-cols-2 sm:items-center sm:gap-6"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="pair-left" style={{ willChange: 'transform, opacity' }}>
                 <ServiceCard card={pair.left} onBook={onBook} />
-              </div>
-
-              {/* Center button — always rendered, GSAP hides it for last pair */}
-              <div className="pair-btn flex items-center justify-center sm:px-2">
-                <div className="pair-btn-inner">
-                <Link
-                  to="/services"
-                  className="group relative flex items-center gap-2 overflow-hidden rounded-2xl border border-brand-accent/25 bg-brand-light px-5 py-3 shadow-md transition-all duration-500 hover:-translate-y-0.5 hover:border-brand-accent/50 hover:shadow-lg hover:shadow-brand-accent/10 sm:gap-3 sm:px-6 sm:py-3"
-                >
-                  <div className="absolute inset-0 shimmer-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <span className="relative text-xs font-bold text-brand-deep sm:text-sm">View</span>
-                  <ArrowRight size={16} className="relative text-brand-accent transition-transform group-hover:translate-x-1" />
-                  <span className="relative text-xs font-bold text-brand-deep sm:text-sm">Services</span>
-                </Link>
-                </div>
               </div>
 
               <div className="pair-right" style={{ willChange: 'transform, opacity' }}>

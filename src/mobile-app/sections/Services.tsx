@@ -1,6 +1,11 @@
+import { useRef, useEffect } from 'react';
 import { ArrowRight, Users, MapPin, Clock3 } from 'lucide-react';
 import { services } from '../../data/siteData';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 type ServicesProps = { onBook: () => void };
 
@@ -14,6 +19,27 @@ const topDeals = [
 ];
 
 export function Services({ onBook }: ServicesProps) {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (!gridRef.current) return;
+      const cards = gridRef.current.querySelectorAll('.mobile-svc-card');
+      cards.forEach((card, i) => {
+        const fromLeft = i % 2 === 0;
+        gsap.fromTo(card,
+          { x: fromLeft ? -60 : 60, opacity: 0, rotateY: fromLeft ? 8 : -8, scale: 0.92 },
+          {
+            x: 0, opacity: 1, rotateY: 0, scale: 1,
+            duration: 0.6, ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 88%' },
+          }
+        );
+      });
+    }, gridRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="services" className="bg-white py-14 text-brand-deep">
       <div className="mx-auto max-w-7xl px-4">
@@ -25,11 +51,11 @@ export function Services({ onBook }: ServicesProps) {
           <div className="mx-auto mt-3 h-1 w-20 rounded-full shimmer-accent" />
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 stagger-children">
+        <div ref={gridRef} className="mt-10 grid grid-cols-2 gap-3" style={{ perspective: '800px' }}>
           {topDeals.map(({ serviceIndex, destination, price, priceNote, seats, type, duration, image }) => {
             const service = services[serviceIndex];
             return (
-              <article key={destination} className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-deep/6 bg-brand-light shadow-sm transition-all duration-300 active:scale-[0.98]">
+              <article key={destination} className="mobile-svc-card group relative flex flex-col overflow-hidden rounded-2xl border-2 border-brand-accent/15 bg-brand-light shadow-sm transition-all duration-300 active:scale-[0.98]" style={{ willChange: 'transform, opacity' }}>
                 <span className="absolute left-2 top-2 z-10 rounded-full bg-brand-accent px-2 py-0.5 text-[8px] font-bold uppercase tracking-widest text-white shadow-lg">Premium</span>
                 <div className="relative h-28 overflow-hidden">
                   <img src={image} alt={`${destination} by Asia Bus Service`} className="h-full w-full object-cover" loading="lazy" />
@@ -59,7 +85,7 @@ export function Services({ onBook }: ServicesProps) {
         </div>
 
         <div data-reveal className="mt-8 flex justify-center">
-          <Link to="/services" className="group flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border-2 border-brand-accent/30 bg-brand-light px-6 py-4 shadow-md transition-all duration-300 active:scale-[0.98]">
+          <Link to="/services" className="group flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border-2 border-brand-accent/25 bg-brand-light px-6 py-4 shadow-md transition-all duration-300 active:scale-[0.98]">
             <div className="absolute inset-0 shimmer-gold opacity-0 transition-opacity duration-300 group-active:opacity-100" />
             <span className="relative font-display text-base font-bold text-brand-deep">View All Services</span>
             <ArrowRight size={18} className="relative text-brand-accent transition-transform group-active:translate-x-1" />
