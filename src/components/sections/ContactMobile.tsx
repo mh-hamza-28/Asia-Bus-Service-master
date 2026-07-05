@@ -23,7 +23,11 @@ const profiles = [
   },
 ];
 
-export function ContactMobile() {
+type ContactMobileProps = {
+  onInquiry?: () => void;
+};
+
+export function ContactMobile({ onInquiry }: ContactMobileProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -68,8 +72,20 @@ export function ContactMobile() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-8 text-center text-sm text-brand-deep/70 max-w-7xl mx-auto">
-          <p>Want to speak with leadership? <a href={company.phoneHref} className="font-semibold text-brand-accent underline">Call us</a></p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 text-center text-sm text-brand-deep/70 max-w-7xl mx-auto sm:flex-row">
+          <p>Want to speak with leadership?</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {onInquiry && (
+              <button
+                type="button"
+                onClick={onInquiry}
+                className="font-semibold text-brand-accent underline"
+              >
+                Send inquiry
+              </button>
+            )}
+            <a href={company.phoneHref} className="font-semibold text-brand-accent underline">Call us</a>
+          </div>
         </div>
       </div>
     </section>
